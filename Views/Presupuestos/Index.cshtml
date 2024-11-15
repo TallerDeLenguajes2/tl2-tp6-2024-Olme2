@@ -18,8 +18,9 @@
                 <td>@presupuesto.NombreDestinatario</td>
                 <td>@presupuesto.FechaCreacion</td>
                 <td>
-                    <a asp-controller="Presupuestos" asp-action="AgregarProducto"></a>
-                    <a></a>
+                    <a asp-controller="Presupuestos" asp-action="AgregarProducto" asp-route-id="@presupuesto.IdPresupuesto" class="btn btn-primary">Agregar Producto</a>
+                    <a asp-controller="Presupuestos" asp-action="EliminarProducto" asp-route-id="@presupuesto.IdPresupuesto" class="btn btn-danger">Eliminar Producto</a>
+                    <a asp-controller="Presupuestos" asp-action="O"></a>
                 </td>
             </tr>
         }
