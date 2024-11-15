@@ -118,3 +118,4 @@ C:\tl2-tp6-2024-Olme2\obj\Debug\net9.0\refint\tl2-tp6-2024-Olme2.dll
 C:\tl2-tp6-2024-Olme2\obj\Debug\net9.0\tl2-tp6-2024-Olme2.pdb
 C:\tl2-tp6-2024-Olme2\obj\Debug\net9.0\tl2-tp6-2024-Olme2.genruntimeconfig.cache
 C:\tl2-tp6-2024-Olme2\obj\Debug\net9.0\ref\tl2-tp6-2024-Olme2.dll
+C:\tl2-tp6-2024-Olme2\obj\Debug\net9.0\tl2-tp6-2024-Olme2.sourcelink.json

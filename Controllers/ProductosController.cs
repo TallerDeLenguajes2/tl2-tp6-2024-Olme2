@@ -14,7 +14,9 @@ public class ProductosController : Controller{
     }
     [HttpGet]
     public IActionResult AltaProducto(){
-        return View();
+        var producto=new Productos();
+        producto.IdProducto=repositorioProductos.BuscarIdMasGrande()+1;
+        return View(producto);
     }
     [HttpPost]
     public IActionResult CrearProducto(Productos producto){
@@ -27,7 +29,7 @@ public class ProductosController : Controller{
         return View(producto);
     }
     [HttpPost]
-    public IActionResult ModificarProducto(Productos producto){
+    public IActionResult ModificarProductoPorId(Productos producto){
         repositorioProductos.ModificarProducto(producto);
         return RedirectToAction("Index");
     }

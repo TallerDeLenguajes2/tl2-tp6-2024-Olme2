@@ -1,1 +1,27 @@
 @model List<Presupuestos>
+
+<h1>Lista de Presupuestos</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Destinatario</th>
+            <th>Fecha</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var presupuesto in Model){
+            <tr>
+                <td>@presupuesto.IdPresupuesto</td>
+                <td>@presupuesto.NombreDestinatario</td>
+                <td>@presupuesto.FechaCreacion</td>
+                <td>
+                    <a asp-controller="Presupuestos" asp-action="AgregarProducto"></a>
+                    <a></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

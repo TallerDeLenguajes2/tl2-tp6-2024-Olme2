@@ -52,8 +52,9 @@ class ProductosRepository{
         string queryString=@"SELECT * FROM Productos WHERE idProducto=@id";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
-            SqliteCommand commnad=new SqliteCommand(queryString, connection);
-            using(SqliteDataReader reader=commnad.ExecuteReader()){
+            SqliteCommand command=new SqliteCommand(queryString, connection);
+            command.Parameters.AddWithValue("@id", id);
+            using(SqliteDataReader reader=command.ExecuteReader()){
                 if(reader.Read()){
                     producto=new Productos();
                     producto.IdProducto=Convert.ToInt32(reader["idProducto"]);
@@ -75,5 +76,25 @@ class ProductosRepository{
             command.ExecuteNonQuery();
             connection.Close();
         }
+    }
+    public int BuscarIdMasGrande(){
+        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
+        string queryString=@"SELECT MAX(idProducto) AS idProducto FROM Productos";
+        int id=0;
+        using (SqliteConnection connection=new SqliteConnection(connectionString)){
+            connection.Open();
+            SqliteCommand command=new SqliteCommand(queryString, connection);
+            using(SqliteDataReader reader=command.ExecuteReader()){
+                if(reader.Read()){
+                    id=Convert.ToInt32(reader["idProducto"]);
+                }
+                else
+                {
+                    id = 999;
+                }
+            }
+            connection.Close();
+        }
+        return id;
     }
 }

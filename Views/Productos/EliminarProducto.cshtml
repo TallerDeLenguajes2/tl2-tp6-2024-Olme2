@@ -1,1 +1,16 @@
 @model Productos
+
+<div class="container mt-4">
+    <div class="mb-4">
+        <h2 class="text-center">Producto n° @Model.IdProducto</h2>
+        <p class="text-center">Descripcion: @Model.Descripcion</p>
+        <p class="text-center">Precio: $@Model.Precio</p>
+    </div>
+    <h3 class="text-center">¿Está seguro de eliminar este producto?</h3>
+    <form asp-controller="Productos" asp-action="EliminarProductoPorId" asp-route-id="@Model.IdProducto" method="post" class="form">
+        <div class="text-center">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>    
+</div>
