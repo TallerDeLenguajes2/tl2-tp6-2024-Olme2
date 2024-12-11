@@ -69,4 +69,12 @@ public class PresupuestosController : Controller{
         repositorioPresupuestos.ModificarPresupuesto(idPresupuesto, NombreDestinatario, FechaCreacion);
         return RedirectToAction("Index");
     }
+    [HttpGet]
+    public IActionResult EliminarPresupuesto(int id){
+        return View(repositorioPresupuestos.ObtenerPresupuestoPorId(id));
+    }
+    public IActionResult EliminarElPresupuesto(int id){
+        repositorioPresupuestos.EliminarPresupuestoPorId(id);
+        return RedirectToAction("Index");
+    }
 }
