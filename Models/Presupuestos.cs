@@ -5,6 +5,7 @@ using System.Linq;
         private string? nombreDestinatario;
         private DateTime fechaCreacion;
         private List<PresupuestosDetalle> detalle;
+        public Presupuestos(){detalle=new List<PresupuestosDetalle>();}
         public Presupuestos(int IdPresupuesto, string? NombreDestinatario, DateTime FechaCreacion){
             idPresupuesto=IdPresupuesto;
             nombreDestinatario=NombreDestinatario;

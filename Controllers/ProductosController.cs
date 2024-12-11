@@ -15,7 +15,7 @@ public class ProductosController : Controller{
     [HttpGet]
     public IActionResult AltaProducto(){
         var producto=new Productos();
-        producto.IdProducto=repositorioProductos.BuscarIdMasGrande()+1;
+        producto.IdProducto=repositorioProductos.BuscarIdMasGrande();
         return View(producto);
     }
     [HttpPost]
@@ -35,12 +35,20 @@ public class ProductosController : Controller{
     }
     [HttpGet]
     public IActionResult EliminarProducto(int id){
+        PresupuestosRepository repoPresu=new PresupuestosRepository();
         var producto = repositorioProductos.ObtenerDetallesDeProductoPorId(id);
+        if(repoPresu.SeEncuentraProductoPorId(id)){
+            return RedirectToAction("ErrorEliminarProducto");
+        }
         return View(producto);
     }
     [HttpPost]
     public IActionResult EliminarProductoPorId(int id){
         repositorioProductos.EliminarProductoPorId(id);
         return RedirectToAction("Index");
+    }
+    [HttpGet]
+    public IActionResult ErrorEliminarProducto(){
+        return View();
     }
 }
