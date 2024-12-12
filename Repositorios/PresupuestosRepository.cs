@@ -3,27 +3,29 @@ using Microsoft.Data.Sqlite;
 class PresupuestosRepository{
     public void CrearPresupuesto(Presupuestos presupuesto){
         string connectionString= @"DataSource=Tienda.db; Cache=Shared";
-        string queryString=@"INSERT INTO Presupuestos (idPresupuesto, NombreDestinatario, FechaCreacion) VALUES (@IdPresupuesto, @nombreDestinatario, @fechaCreacion)";
+        string queryString=@"INSERT INTO Presupuestos (idPresupuesto, ClienteId, FechaCreacion) VALUES (@IdPresupuesto, @IdCliente, @fechaCreacion)";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command= new SqliteCommand(queryString, connection);
             command.Parameters.AddWithValue("@IdPresupuesto", presupuesto.IdPresupuesto);
-            command.Parameters.AddWithValue("@nombreDestinatario", presupuesto.NombreDestinatario);
+            command.Parameters.AddWithValue("@IdCliente", presupuesto.Cliente.ClienteId);
             command.Parameters.AddWithValue("@fechaCreacion", presupuesto.FechaCreacion);
             command.ExecuteNonQuery();
             connection.Close();
         }
     }
     public List<Presupuestos> ListarPresupuestosGuardados(){
+        ClientesRepository repo= new ClientesRepository();
         List<Presupuestos> presupuestos=new List<Presupuestos>();
         string connectionString=@"DataSource=Tienda.db; Cache=Shared";
-        string queryString=@"SELECT idPresupuesto, NombreDestinatario, FechaCreacion FROM Presupuestos;";
+        string queryString=@"SELECT idPresupuesto, ClienteId, FechaCreacion FROM Presupuestos;";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command=new SqliteCommand(queryString, connection);
             using(SqliteDataReader reader=command.ExecuteReader()){
                 while(reader.Read()){
-                    Presupuestos presupuesto=new Presupuestos(Convert.ToInt32(reader["idPresupuesto"]), reader["NombreDestinatario"].ToString(), Convert.ToDateTime(reader["FechaCreacion"]));
+                    Clientes cliente = repo.ObtenerClientePorId(Convert.ToInt32(reader["ClienteId"]));
+                    Presupuestos presupuesto=new Presupuestos(Convert.ToInt32(reader["idPresupuesto"]), cliente, Convert.ToDateTime(reader["FechaCreacion"]));
                     presupuestos.Add(presupuesto);
                 }
             }
@@ -33,9 +35,10 @@ class PresupuestosRepository{
     }
      public Presupuestos ObtenerPresupuestoPorId(int id)
     {
+        ClientesRepository repo= new ClientesRepository();
         Presupuestos presupuesto = new Presupuestos();
         string connectionString = @"Data Source = Tienda.db;Cache=Shared";
-        string query = @"SELECT P.idPresupuesto, P.NombreDestinatario, P.FechaCreacion, PR.idProducto, PR.Descripcion AS Producto, PR.Precio, PD.Cantidad FROM Presupuestos P LEFT JOIN PresupuestosDetalle PD ON P.idPresupuesto = PD.idPresupuesto LEFT JOIN Productos PR ON PD.idProducto = PR.idProducto WHERE P.idPresupuesto = @id;";
+        string query = @"SELECT P.idPresupuesto, ClienteId, P.FechaCreacion, PR.idProducto, PR.Descripcion AS Producto, PR.Precio, PD.Cantidad FROM Presupuestos P LEFT JOIN PresupuestosDetalle PD ON P.idPresupuesto = PD.idPresupuesto LEFT JOIN Productos PR ON PD.idProducto = PR.idProducto WHERE P.idPresupuesto = @id;";
         using (SqliteConnection connection = new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command = new SqliteCommand(query, connection);
@@ -44,7 +47,8 @@ class PresupuestosRepository{
             using (SqliteDataReader reader = command.ExecuteReader()){
                 while(reader.Read()){
                     if(aux == 1){
-                        presupuesto = new Presupuestos(Convert.ToInt32(reader["idPresupuesto"]), reader["NombreDestinatario"].ToString(), Convert.ToDateTime(reader["FechaCreacion"]));
+                        Clientes cliente = repo.ObtenerClientePorId(Convert.ToInt32(reader["ClienteId"]));
+                        presupuesto = new Presupuestos(Convert.ToInt32(reader["idPresupuesto"]), cliente, Convert.ToDateTime(reader["FechaCreacion"]));
                     }
                     if(!reader.IsDBNull(reader.GetOrdinal("idProducto"))){
                         Productos producto = new Productos(Convert.ToInt32(reader["idProducto"]), reader["Producto"].ToString(), Convert.ToInt32(reader["Precio"]));
