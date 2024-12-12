@@ -6,6 +6,22 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Valentino\\AppData\\Local\\SourceServer\\b021f89f35fcbd29838a3be99941632f04d3712de9cff33514e5ea30a535d211\\Repositorios\\PresupuestosRespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\repositorios\\presupuestosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:repositorios\\presupuestosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\models\\presupuestos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:models\\presupuestos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\controllers\\presupuestoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:controllers\\presupuestoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\views\\productos\\eliminarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:views\\productos\\eliminarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -29,11 +45,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PresupuestosRepository.cs",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Repositorios\\PresupuestosRepository.cs",
+              "RelativeDocumentMoniker": "Repositorios\\PresupuestosRepository.cs",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Repositorios\\PresupuestosRepository.cs",
+              "RelativeToolTip": "Repositorios\\PresupuestosRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T16:24:59.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Presupuestos.cs",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Models\\Presupuestos.cs",
+              "RelativeDocumentMoniker": "Models\\Presupuestos.cs",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Models\\Presupuestos.cs",
+              "RelativeToolTip": "Models\\Presupuestos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T16:24:55.636Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PresupuestosController.cs",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Controllers\\PresupuestosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PresupuestosController.cs",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Controllers\\PresupuestosController.cs",
+              "RelativeToolTip": "Controllers\\PresupuestosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T16:24:48.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "Controllers\\ClientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T16:24:43.029Z"
             },
             {
               "$type": "Document",
@@ -43,14 +107,14 @@
               "RelativeDocumentMoniker": "..\\Users\\Valentino\\AppData\\Local\\SourceServer\\b021f89f35fcbd29838a3be99941632f04d3712de9cff33514e5ea30a535d211\\Repositorios\\PresupuestosRespository.cs",
               "ToolTip": "C:\\Users\\Valentino\\AppData\\Local\\SourceServer\\b021f89f35fcbd29838a3be99941632f04d3712de9cff33514e5ea30a535d211\\Repositorios\\PresupuestosRespository.cs",
               "RelativeToolTip": "..\\Users\\Valentino\\AppData\\Local\\SourceServer\\b021f89f35fcbd29838a3be99941632f04d3712de9cff33514e5ea30a535d211\\Repositorios\\PresupuestosRespository.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAiwBcAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-12T16:11:53.076Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "EliminarProducto.cshtml",
               "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\EliminarProducto.cshtml",
               "RelativeDocumentMoniker": "Views\\Productos\\EliminarProducto.cshtml",
@@ -62,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Productos.cs",
               "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Models\\Productos.cs",
               "RelativeDocumentMoniker": "Models\\Productos.cs",
@@ -74,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "index.cshtml",
               "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\index.cshtml",
               "RelativeDocumentMoniker": "Views\\Productos\\index.cshtml",
@@ -86,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "AltaProducto.cshtml",
               "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\AltaProducto.cshtml",
               "RelativeDocumentMoniker": "Views\\Productos\\AltaProducto.cshtml",

@@ -65,8 +65,8 @@ public class PresupuestosController : Controller{
         return View(presupuesto);
     }
     [HttpPost]
-    public IActionResult ModificarElPresupuesto(int idPresupuesto, string NombreDestinatario, DateTime FechaCreacion){
-        repositorioPresupuestos.ModificarPresupuesto(idPresupuesto, NombreDestinatario, FechaCreacion);
+    public IActionResult ModificarElPresupuesto(int idPresupuesto, int idCliente, DateTime FechaCreacion){
+        repositorioPresupuestos.ModificarPresupuesto(idPresupuesto, idCliente, FechaCreacion);
         return RedirectToAction("Index");
     }
     [HttpGet]

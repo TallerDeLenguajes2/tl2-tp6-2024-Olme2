@@ -28,7 +28,7 @@ public class ClientesController : Controller{
     }
     [HttpPost]
     public IActionResult ModificarElCliente(Clientes cliente){
-        repositorioClientes.ModificarCliente(cliente.ClienteId, cliente.Nombre, cliente.Email, cliente.Telefono);
+        repositorioClientes.ModificarCliente(cliente);
         return RedirectToAction("Index");
     }
     [HttpGet]

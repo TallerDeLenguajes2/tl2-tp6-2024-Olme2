@@ -2,7 +2,7 @@
 <h3>Detalles del Presupuesto @Model.IdPresupuesto</h3>  
 <div class="container mt-4">
     <div class="mb-4">
-        <p>Nombre del destinatario: @Model.NombreDestinatario</p>
+        <p>Nombre del Cliente: @Model.Cliente.Nombre</p>
         <p>Fecha de Creación: @Model.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</p>
     </div>
     @if(Model.Detalle.Count>0){

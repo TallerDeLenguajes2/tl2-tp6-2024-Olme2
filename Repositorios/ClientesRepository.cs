@@ -20,14 +20,14 @@ class ClientesRepository{
     }
     public int BuscarIdCorrespondiente() {
         string connectionString = @"Data Source=Tienda.db; Cache=Shared";
-        string queryString = @"SELECT idProducto FROM Productos";
+        string queryString = @"SELECT ClienteId FROM Clientes";
         List<int> ids = new List<int>();
         using (SqliteConnection connection = new SqliteConnection(connectionString)) {
             connection.Open();
             SqliteCommand command = new SqliteCommand(queryString, connection);
             using (SqliteDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
-                    ids.Add(Convert.ToInt32(reader["idProducto"]));
+                    ids.Add(Convert.ToInt32(reader["ClienteId"]));
                 }
             }
             connection.Close();
@@ -76,16 +76,16 @@ class ClientesRepository{
         }
         return cliente;
     }
-    public void ModificarCliente(int id, string? nombre, string? mail, string? tel){
+    public void ModificarCliente(Clientes cliente){
         string connectionString= @"DataSource=Tienda.db; Cache=Shared";
         string queryString= @"UPDATE Clientes SET Nombre=@nombre, Email=@mail, Telefono=@tel WHERE ClienteId=@id;";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command= new SqliteCommand(queryString, connection);
-            command.Parameters.AddWithValue("@nombre", nombre);
-            command.Parameters.AddWithValue("@mail", mail);
-            command.Parameters.AddWithValue("@tel", tel);
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@nombre", cliente.Nombre);
+            command.Parameters.AddWithValue("@mail", cliente.Email);
+            command.Parameters.AddWithValue("@tel", cliente.Telefono);
+            command.Parameters.AddWithValue("@id", cliente.ClienteId);
             command.ExecuteNonQuery();
             connection.Close();
         }
