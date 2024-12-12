@@ -37,18 +37,11 @@ public class ProductosController : Controller{
     public IActionResult EliminarProducto(int id){
         PresupuestosRepository repoPresu=new PresupuestosRepository();
         var producto = repositorioProductos.ObtenerDetallesDeProductoPorId(id);
-        if(repoPresu.SeEncuentraProductoPorId(id)){
-            return RedirectToAction("ErrorEliminarProducto");
-        }
         return View(producto);
     }
     [HttpPost]
     public IActionResult EliminarProductoPorId(int id){
         repositorioProductos.EliminarProductoPorId(id);
         return RedirectToAction("Index");
-    }
-    [HttpGet]
-    public IActionResult ErrorEliminarProducto(){
-        return View();
     }
 }

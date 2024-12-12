@@ -70,10 +70,14 @@ class ProductosRepository{
     public void EliminarProductoPorId(int id){
         string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"DELETE FROM Productos WHERE idProducto=@id";
+        string queryString2=@"DELETE FROM PresupuestosDetalle WHERE idProducto=@id";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command= new SqliteCommand(queryString, connection);
+            SqliteCommand command2= new SqliteCommand(queryString2, connection);
             command.Parameters.AddWithValue("@id", id);
+            command2.Parameters.AddWithValue("@id", id);
+            command2.ExecuteNonQuery();
             command.ExecuteNonQuery();
             connection.Close();
         }

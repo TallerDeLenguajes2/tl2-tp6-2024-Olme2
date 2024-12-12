@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\tl2-tp6-2024-Olme2\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\views\\productos\\eliminarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:views\\productos\\eliminarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\views\\productos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:views\\productos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\views\\productos\\altaproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:views\\productos\\altaproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|c:\\tl2-tp6-2024-olme2\\models\\productos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29532933-D4F8-4BFD-A6FA-3EEB992900DD}|tl2-tp6-2024-Olme2.csproj|solutionrelative:models\\productos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +26,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EliminarProducto.cshtml",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\EliminarProducto.cshtml",
+              "RelativeDocumentMoniker": "Views\\Productos\\EliminarProducto.cshtml",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\EliminarProducto.cshtml",
+              "RelativeToolTip": "Views\\Productos\\EliminarProducto.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T17:33:56.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Productos.cs",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Models\\Productos.cs",
+              "RelativeDocumentMoniker": "Models\\Productos.cs",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Models\\Productos.cs",
+              "RelativeToolTip": "Models\\Productos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T17:30:40.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "index.cshtml",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Productos\\index.cshtml",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\index.cshtml",
+              "RelativeToolTip": "Views\\Productos\\index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T17:30:13.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AltaProducto.cshtml",
+              "DocumentMoniker": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\AltaProducto.cshtml",
+              "RelativeDocumentMoniker": "Views\\Productos\\AltaProducto.cshtml",
+              "ToolTip": "C:\\tl2-tp6-2024-Olme2\\Views\\Productos\\AltaProducto.cshtml",
+              "RelativeToolTip": "Views\\Productos\\AltaProducto.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T17:28:26.774Z"
             }
           ]
         }
