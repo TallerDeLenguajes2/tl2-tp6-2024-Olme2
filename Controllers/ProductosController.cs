@@ -39,7 +39,7 @@ public class ProductosController : Controller{
         var producto = repositorioProductos.ObtenerDetallesDeProductoPorId(id);
         return View(producto);
     }
-    [HttpPost]
+    [HttpGet]
     public IActionResult EliminarProductoPorId(int id){
         repositorioProductos.EliminarProductoPorId(id);
         return RedirectToAction("Index");

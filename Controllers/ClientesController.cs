@@ -33,9 +33,10 @@ public class ClientesController : Controller{
     }
     [HttpGet]
     public IActionResult EliminarCliente(int id){
-        return View(id);
+        Clientes cliente=repositorioClientes.ObtenerClientePorId(id);
+        return View(cliente);
     }
-    [HttpPost]
+    [HttpGet]
     public IActionResult EliminarElCliente(int id){
         repositorioClientes.EliminarCliente(id);
         return RedirectToAction("Index");

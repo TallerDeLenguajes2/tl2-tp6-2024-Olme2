@@ -92,11 +92,11 @@ class ClientesRepository{
     }
     public void EliminarCliente(int id){
         string connectionString= @"DataSource=Tienda.db; Cache=Shared";
-        string queryString= @"DELETE FROM Clientes WHERE ClienteId=@id";
+        string queryString= @"DELETE FROM Clientes WHERE ClienteId=@Id;";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command= new SqliteCommand(queryString, connection);
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@Id", id);
             command.ExecuteNonQuery();
             connection.Close();
         }
