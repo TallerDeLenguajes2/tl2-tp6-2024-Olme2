@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Controllers;
@@ -13,13 +14,19 @@ public class PresupuestosController : Controller{
     }
     [HttpGet]
     public IActionResult AltaPresupuesto(){
-        Presupuestos presupuesto=new Presupuestos();
-        presupuesto.IdPresupuesto=repositorioPresupuestos.BuscarIdMasGrande();
-        presupuesto.FechaCreacion= DateTime.Now;
-        return View(presupuesto);
+        ClientesRepository repo = new ClientesRepository();
+        List<Clientes> clientes = repo.ListarClientesGuardados();
+        ViewData["clientes"] = clientes.Select(c=> new SelectListItem
+        {
+            Value = c.ClienteId.ToString(), 
+            Text = c.Nombre
+        }).ToList();
+        return View();
     }
     [HttpPost]
-    public IActionResult CrearPresupuesto(Presupuestos presupuesto){
+    public IActionResult CrearPresupuesto(AltaPresupuestoViewModel presupuestoVM){
+        if(!ModelState.IsValid) return RedirectToAction ("Index");
+        var presupuesto = new Presupuestos(presupuestoVM);
         repositorioPresupuestos.CrearPresupuesto(presupuesto);
         return RedirectToAction("Index");
     }
@@ -27,16 +34,19 @@ public class PresupuestosController : Controller{
     public IActionResult AgregarProductosAPresupuesto(int id){
         ProductosRepository repositorioProductos=new ProductosRepository();
         List<Productos> productos = repositorioProductos.ListarProductosRegistrados();
-        ViewData["Productos"]=productos;
-        return View(id);
+        ViewData["Productos"]=productos.Select(p => new SelectListItem
+        {
+            Value = p.IdProducto.ToString(), 
+            Text = p.Descripcion 
+        }).ToList();
+        var model = new AgregarProductosAPresupuestoViewModel();
+        model.IdPresupuesto=id;
+        return View(model);
     }
     [HttpPost]
-    public IActionResult AgregarProductos(int idPresupuesto, List<int> cantidades, List<int> idsProductos){
-        for(int i = 0; i < idsProductos.Count; i++){
-            if(cantidades[i] > 0){
-                repositorioPresupuestos.AgregarProducto(idPresupuesto, idsProductos[i], cantidades[i]);
-            }
-        }
+    public IActionResult AgregarLosProductos(AgregarProductosAPresupuestoViewModel productos){
+        if(!ModelState.IsValid) return RedirectToAction("Index");
+        repositorioPresupuestos.AgregarProducto(productos.IdPresupuesto, productos.IdProducto, productos.Cantidad);
         return RedirectToAction("Index");
     }
     [HttpGet]
@@ -60,13 +70,24 @@ public class PresupuestosController : Controller{
     }
     [HttpGet]
     public IActionResult ModificarPresupuesto(int id){
-        Presupuestos? presupuesto=new Presupuestos();
-        presupuesto=repositorioPresupuestos.ObtenerPresupuestoPorId(id);
-        return View(presupuesto);
+        ClientesRepository repoClientes = new ClientesRepository();
+        List<Clientes> Clientes = repoClientes.ListarClientesGuardados();
+        ViewData["Clientes"] =  Clientes.Select(c=> new SelectListItem
+        {
+            Value = c.ClienteId.ToString(), 
+            Text = c.Nombre
+        }).ToList();
+        var presupuesto  = repositorioPresupuestos.ObtenerPresupuestoPorId(id);
+        var presupuestoVM = new ModificarPresupuestoViewModel();
+        presupuestoVM.IdPresupuesto = id;
+        presupuestoVM.FechaCreacion = presupuesto.FechaCreacion;
+        return View(presupuestoVM);
     }
     [HttpPost]
-    public IActionResult ModificarElPresupuesto(int idPresupuesto, int idCliente, DateTime FechaCreacion){
-        repositorioPresupuestos.ModificarPresupuesto(idPresupuesto, idCliente, FechaCreacion);
+    public IActionResult ModificarElPresupuesto(ModificarPresupuestoViewModel presupuestoVM){
+        if(!ModelState.IsValid) return RedirectToAction("Index");
+        var presupuesto = new Presupuestos(presupuestoVM);
+        repositorioPresupuestos.ModificarPresupuesto(presupuesto);
         return RedirectToAction("Index");
     }
     [HttpGet]

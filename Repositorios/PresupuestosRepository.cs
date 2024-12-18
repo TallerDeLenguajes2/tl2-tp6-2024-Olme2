@@ -3,11 +3,10 @@ using Microsoft.Data.Sqlite;
 class PresupuestosRepository{
     public void CrearPresupuesto(Presupuestos presupuesto){
         string connectionString= @"DataSource=Tienda.db; Cache=Shared";
-        string queryString=@"INSERT INTO Presupuestos (idPresupuesto, ClienteId, FechaCreacion) VALUES (@IdPresupuesto, @IdCliente, @fechaCreacion)";
+        string queryString=@"INSERT INTO Presupuestos (ClienteId, FechaCreacion) VALUES (@IdCliente, @fechaCreacion)";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command= new SqliteCommand(queryString, connection);
-            command.Parameters.AddWithValue("@IdPresupuesto", presupuesto.IdPresupuesto);
             command.Parameters.AddWithValue("@IdCliente", presupuesto.Cliente.ClienteId);
             command.Parameters.AddWithValue("@fechaCreacion", presupuesto.FechaCreacion);
             command.ExecuteNonQuery();
@@ -108,31 +107,6 @@ class PresupuestosRepository{
             connection.Close();
         }
     }
-    public int BuscarIdMasGrande(){
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
-        string queryString=@"SELECT idPresupuesto FROM Presupuestos";
-        List<int> ids=new List<int>();
-        using (SqliteConnection connection=new SqliteConnection(connectionString)){
-            connection.Open();
-            SqliteCommand command=new SqliteCommand(queryString, connection);
-            using(SqliteDataReader reader=command.ExecuteReader()){
-                while(reader.Read()){
-                    ids.Add(Convert.ToInt32(reader["IdPresupuesto"]));
-                }
-            }
-            connection.Close();
-        }
-        if(ids.Count == 0){
-            return 1;
-        }
-        ids.Sort();
-        for(int i=1; i<ids[^1]; i++){
-            if(!ids.Contains(i)){
-                return i;
-            }
-        }
-        return ids[^1]+1;
-    }
     public List<PresupuestosDetalle> MostrarDetallePorId(int id){
         ProductosRepository repoProductos=new ProductosRepository();
         string connectionString=@"Data Source=Tienda.db; Cache=Shared";
@@ -175,15 +149,15 @@ class PresupuestosRepository{
             connection.Close();
         }
     }
-    public void ModificarPresupuesto(int idPresupuesto, int IdCliente, DateTime fecha){
+    public void ModificarPresupuesto(Presupuestos presupuesto){
         string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"UPDATE Presupuestos SET ClienteId=@IdCliente, FechaCreacion=@fech WHERE idPresupuesto=@idPresu;";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command=new SqliteCommand(queryString ,connection);
-            command.Parameters.AddWithValue("@IdCliente", IdCliente);
-            command.Parameters.AddWithValue("@fech", fecha);
-            command.Parameters.AddWithValue("@idPresu", idPresupuesto);
+            command.Parameters.AddWithValue("@IdCliente", presupuesto.Cliente.ClienteId);
+            command.Parameters.AddWithValue("@fech", presupuesto.FechaCreacion);
+            command.Parameters.AddWithValue("@idPresu", presupuesto.IdPresupuesto);
             command.ExecuteNonQuery();
             connection.Close();
         }

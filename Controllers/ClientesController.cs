@@ -18,6 +18,7 @@ public class ClientesController : Controller{
     }
     [HttpPost]
     public IActionResult CrearCliente(Clientes cliente){
+        if(!ModelState.IsValid) return RedirectToAction ("Index");
         repositorioClientes.CrearCliente(cliente);
         return RedirectToAction("Index");
     }
@@ -28,6 +29,7 @@ public class ClientesController : Controller{
     }
     [HttpPost]
     public IActionResult ModificarElCliente(Clientes cliente){
+        if(!ModelState.IsValid) return RedirectToAction ("Index");
         repositorioClientes.ModificarCliente(cliente);
         return RedirectToAction("Index");
     }

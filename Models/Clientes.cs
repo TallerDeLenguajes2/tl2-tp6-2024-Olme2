@@ -18,4 +18,16 @@ public class Clientes{
         email=Email;
         telefono=Telefono;
     }
+    public Clientes(AltaClienteViewModel clienteVM){
+        Nombre = clienteVM.Nombre;
+        Email = clienteVM.Email;
+        Telefono = clienteVM.Telefono;
+    }
+
+    public Clientes(ModificarClienteViewModel clienteVM){
+        ClienteId = clienteVM.ClienteId;
+        Nombre = clienteVM.Nombre;
+        Email = clienteVM.Email;
+        Telefono = clienteVM.Telefono;
+    }
 }
