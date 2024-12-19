@@ -23,7 +23,7 @@ public class ModificarClienteViewModel{
     [EmailAddress(ErrorMessage = "Verificar que el email sea válido")]
     public string Email { get => email; set => email = value;}
 
-    [Required(ErrorMessage = "Nombre del cliente obligatorio")]
+    [Required(ErrorMessage = "Teléfono del cliente obligatorio")]
     [Phone(ErrorMessage = "Verificar que el telefono sea válido")]
     public string Telefono { get => telefono; set => telefono = value;}
 }

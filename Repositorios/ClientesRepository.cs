@@ -17,38 +17,13 @@ class ClientesRepository{
             connection.Close();
         }
         return clientes;
-    }
-    public int BuscarIdCorrespondiente() {
-        string connectionString = @"Data Source=Tienda.db; Cache=Shared";
-        string queryString = @"SELECT ClienteId FROM Clientes";
-        List<int> ids = new List<int>();
-        using (SqliteConnection connection = new SqliteConnection(connectionString)) {
-            connection.Open();
-            SqliteCommand command = new SqliteCommand(queryString, connection);
-            using (SqliteDataReader reader = command.ExecuteReader()) {
-                while (reader.Read()) {
-                    ids.Add(Convert.ToInt32(reader["ClienteId"]));
-                }
-            }
-            connection.Close();
-        }
-        if (ids.Count == 0){
-            return 1;
-        }       
-        for(int i=1; i<ids[^1]; i++){
-            if(!ids.Contains(i)){
-                return i; 
-            }
-        }       
-        return ids[^1] + 1;
-    }   
+    } 
     public void CrearCliente(Clientes cliente){
         string connectionString= @"DataSource=Tienda.db; Cache=Shared";
-        string queryString= @"INSERT INTO Clientes (ClienteId, Nombre, Email, Telefono) VALUES (@id, @nombre, @mail, @tel);";
+        string queryString= @"INSERT INTO Clientes (Nombre, Email, Telefono) VALUES (@nombre, @mail, @tel);";
         using(SqliteConnection connection = new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command = new SqliteCommand(queryString, connection);
-            command.Parameters.AddWithValue("@id", cliente.ClienteId);
             command.Parameters.AddWithValue("@nombre", cliente.Nombre);
             command.Parameters.AddWithValue("@mail", cliente.Email);
             command.Parameters.AddWithValue("@tel", cliente.Telefono);

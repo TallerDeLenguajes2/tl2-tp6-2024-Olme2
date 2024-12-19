@@ -3,11 +3,10 @@ using Microsoft.Data.Sqlite;
 class ProductosRepository{
     public void CrearNuevoProducto(Productos producto){
         string connectionString=@"Data Source=Tienda.db; Cache=Shared";
-        string queryString=@"INSERT INTO Productos (idProducto, Descripcion, Precio) VALUES (@Id, @Descripcion, @Precio)";
+        string queryString=@"INSERT INTO Productos (Descripcion, Precio) VALUES (@Descripcion, @Precio)";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
             SqliteCommand command=new SqliteCommand(queryString, connection);
-            command.Parameters.AddWithValue("@Id", producto.IdProducto);
             command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
             command.Parameters.AddWithValue("@Precio", producto.Precio);
             command.ExecuteNonQuery();
@@ -81,30 +80,5 @@ class ProductosRepository{
             command.ExecuteNonQuery();
             connection.Close();
         }
-    }
-    public int BuscarIdMasGrande(){
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
-        string queryString=@"SELECT idProducto FROM Productos";
-        List<int> ids=new List<int>();
-        using (SqliteConnection connection=new SqliteConnection(connectionString)){
-            connection.Open();
-            SqliteCommand command=new SqliteCommand(queryString, connection);
-            using(SqliteDataReader reader=command.ExecuteReader()){
-                while(reader.Read()){
-                    ids.Add(Convert.ToInt32(reader["idProducto"]));
-                }
-            }
-            connection.Close();
-        }
-        if(ids.Count == 0){
-            return 1;
-        }
-        ids.Sort();
-        for(int i=1; i<=ids[^1]; i++){
-            if(!ids.Contains(i)){
-                return i;
-            }
-        }
-        return ids[^1]+1;
     }
 }

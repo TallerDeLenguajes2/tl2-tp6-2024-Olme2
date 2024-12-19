@@ -14,19 +14,20 @@ public class ProductosController : Controller{
     }
     [HttpGet]
     public IActionResult AltaProducto(){
-        var producto=new Productos();
-        producto.IdProducto=repositorioProductos.BuscarIdMasGrande();
-        return View(producto);
+        return View();
     }
     [HttpPost]
-    public IActionResult CrearProducto(Productos producto){
+    public IActionResult CrearProducto(AltaProductoViewModel productoVM){
+        if(!ModelState.IsValid) return RedirectToAction("Index");
+        var producto = new Productos(productoVM);
         repositorioProductos.CrearNuevoProducto(producto);
         return RedirectToAction("Index");
     }
     [HttpGet]
     public IActionResult ModificarProducto(int id){
         var producto = repositorioProductos.ObtenerDetallesDeProductoPorId(id);
-        return View(producto);
+        var productoVM = new ModificarProductoViewModel(producto);
+        return View(productoVM);
     }
     [HttpPost]
     public IActionResult ModificarProductoPorId(Productos producto){

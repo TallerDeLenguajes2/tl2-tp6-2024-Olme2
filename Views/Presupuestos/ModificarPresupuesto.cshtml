@@ -2,6 +2,7 @@
 
 <h3>Modificacion del presupuesto n° @Model.IdPresupuesto</h3>
 <form asp-controller="Presupuestos" asp-action="ModificarElPresupuesto" method="post" class="form container mt-4">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="IdPresupuesto" value="@Model.IdPresupuesto">
     <div class="form-group">
         <label for="IdCliente" class="form-label">Cliente</label>

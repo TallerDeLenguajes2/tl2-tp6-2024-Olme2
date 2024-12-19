@@ -12,24 +12,25 @@ public class ClientesController : Controller{
     }
     [HttpGet]
     public IActionResult AltaCliente(){
-        Clientes cliente=new Clientes();
-        cliente.ClienteId=repositorioClientes.BuscarIdCorrespondiente();
-        return View(cliente);
+        return View();
     }
     [HttpPost]
-    public IActionResult CrearCliente(Clientes cliente){
+    public IActionResult CrearCliente(AltaClienteViewModel clienteVM){
         if(!ModelState.IsValid) return RedirectToAction ("Index");
+        var cliente = new Clientes(clienteVM);
         repositorioClientes.CrearCliente(cliente);
         return RedirectToAction("Index");
     }
     [HttpGet]
     public IActionResult ModificarCliente(int id){
-        Clientes cliente=repositorioClientes.ObtenerClientePorId(id);
-        return View(cliente);
+        var cliente=repositorioClientes.ObtenerClientePorId(id);
+        var clienteVM = new ModificarClienteViewModel(cliente);
+        return View(clienteVM);
     }
     [HttpPost]
-    public IActionResult ModificarElCliente(Clientes cliente){
+    public IActionResult ModificarElCliente(ModificarClienteViewModel clienteVM){
         if(!ModelState.IsValid) return RedirectToAction ("Index");
+        var cliente = new Clientes(clienteVM);
         repositorioClientes.ModificarCliente(cliente);
         return RedirectToAction("Index");
     }
