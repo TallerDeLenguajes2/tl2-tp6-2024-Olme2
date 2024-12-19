@@ -4,18 +4,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Controllers;
 public class PresupuestosController : Controller{
     private readonly ILogger<PresupuestosController> _logger;
-    private PresupuestosRepository repositorioPresupuestos;
-    public PresupuestosController(ILogger<PresupuestosController> logger){
+    private IPresupuestosRepository repositorioPresupuestos;
+    private IClientesRepository repositorioClientes;
+    private IProductosRepository repositorioProductos;
+    public PresupuestosController(ILogger<PresupuestosController> logger, IPresupuestosRepository RepositorioPresupuestos, IClientesRepository RepositorioClientes, IProductosRepository RepositorioProductos){
         _logger=logger;
-        repositorioPresupuestos=new PresupuestosRepository();
+        repositorioPresupuestos = RepositorioPresupuestos;
+        repositorioClientes = RepositorioClientes;
+        repositorioProductos = RepositorioProductos;
     }
     public IActionResult Index(){
         return View(repositorioPresupuestos.ListarPresupuestosGuardados());
     }
     [HttpGet]
     public IActionResult AltaPresupuesto(){
-        ClientesRepository repo = new ClientesRepository();
-        List<Clientes> clientes = repo.ListarClientesGuardados();
+        List<Clientes> clientes = repositorioClientes.ListarClientesGuardados();
         ViewData["clientes"] = clientes.Select(c=> new SelectListItem
         {
             Value = c.ClienteId.ToString(), 
@@ -32,7 +35,6 @@ public class PresupuestosController : Controller{
     }
     [HttpGet]
     public IActionResult AgregarProductosAPresupuesto(int id){
-        ProductosRepository repositorioProductos=new ProductosRepository();
         List<Productos> productos = repositorioProductos.ListarProductosRegistrados();
         ViewData["Productos"]=productos.Select(p => new SelectListItem
         {
@@ -70,8 +72,7 @@ public class PresupuestosController : Controller{
     }
     [HttpGet]
     public IActionResult ModificarPresupuesto(int id){
-        ClientesRepository repoClientes = new ClientesRepository();
-        List<Clientes> Clientes = repoClientes.ListarClientesGuardados();
+        List<Clientes> Clientes = repositorioClientes.ListarClientesGuardados();
         ViewData["Clientes"] =  Clientes.Select(c=> new SelectListItem
         {
             Value = c.ClienteId.ToString(), 

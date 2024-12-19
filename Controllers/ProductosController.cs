@@ -4,10 +4,10 @@ namespace Controllers;
 
 public class ProductosController : Controller{
     private readonly ILogger<ProductosController> _logger;
-    private ProductosRepository repositorioProductos;
-    public ProductosController(ILogger<ProductosController> logger){
+    private IProductosRepository repositorioProductos;
+    public ProductosController(ILogger<ProductosController> logger, IProductosRepository RepositorioProductos){
         _logger=logger;
-        repositorioProductos=new ProductosRepository();
+        repositorioProductos = RepositorioProductos;
     }
     public IActionResult Index(){
         return View(repositorioProductos.ListarProductosRegistrados());
@@ -36,7 +36,6 @@ public class ProductosController : Controller{
     }
     [HttpGet]
     public IActionResult EliminarProducto(int id){
-        PresupuestosRepository repoPresu=new PresupuestosRepository();
         var producto = repositorioProductos.ObtenerDetallesDeProductoPorId(id);
         return View(producto);
     }

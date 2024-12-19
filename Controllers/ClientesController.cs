@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 public class ClientesController : Controller{
     private readonly ILogger<ClientesController> _logger;
-    private ClientesRepository repositorioClientes;
-    public ClientesController(ILogger<ClientesController> logger){
+    private IClientesRepository repositorioClientes;
+    public ClientesController(ILogger<ClientesController> logger, IClientesRepository RepositorioClientes){
         _logger=logger;
-        repositorioClientes=new ClientesRepository();
+        repositorioClientes = RepositorioClientes;
     }
     public IActionResult Index(){
         return View(repositorioClientes.ListarClientesGuardados());
