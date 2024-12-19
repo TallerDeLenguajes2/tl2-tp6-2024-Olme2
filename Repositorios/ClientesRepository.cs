@@ -1,9 +1,12 @@
 using Microsoft.Data.Sqlite;
 
 class ClientesRepository{
+    string connectionString;
+    public ClientesRepository(){
+        connectionString = @"DataSource=Tienda.db; Cache=Shared";
+    }
     public List<Clientes> ListarClientesGuardados(){
         List<Clientes> clientes = new List<Clientes>();
-        string connectionString= @"DataSource=Tienda.db; Cache=Shared";
         string queryString= @"SELECT * FROM Clientes;";
         using(SqliteConnection connection = new SqliteConnection(connectionString)){
             connection.Open();
@@ -19,7 +22,6 @@ class ClientesRepository{
         return clientes;
     } 
     public void CrearCliente(Clientes cliente){
-        string connectionString= @"DataSource=Tienda.db; Cache=Shared";
         string queryString= @"INSERT INTO Clientes (Nombre, Email, Telefono) VALUES (@nombre, @mail, @tel);";
         using(SqliteConnection connection = new SqliteConnection(connectionString)){
             connection.Open();
@@ -33,7 +35,6 @@ class ClientesRepository{
     }
     public Clientes ObtenerClientePorId(int id){
         Clientes cliente= new Clientes();
-        string connectionString= @"DataSource=Tienda.db; Cache=Shared";
         string queryString= @"SELECT * FROM Clientes WHERE ClienteId=@id;";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
             connection.Open();
@@ -52,7 +53,6 @@ class ClientesRepository{
         return cliente;
     }
     public void ModificarCliente(Clientes cliente){
-        string connectionString= @"DataSource=Tienda.db; Cache=Shared";
         string queryString= @"UPDATE Clientes SET Nombre=@nombre, Email=@mail, Telefono=@tel WHERE ClienteId=@id;";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
             connection.Open();
@@ -66,7 +66,6 @@ class ClientesRepository{
         }
     }
     public void EliminarCliente(int id){
-        string connectionString= @"DataSource=Tienda.db; Cache=Shared";
         string queryString= @"DELETE FROM Clientes WHERE ClienteId=@Id;";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
             connection.Open();

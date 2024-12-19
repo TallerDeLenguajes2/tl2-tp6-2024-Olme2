@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.Data.Sqlite;
 class PresupuestosRepository{
+    string connectionString;
+    public PresupuestosRepository(){
+        connectionString = @"DataSource=Tienda.db; Cache=Shared";
+    }
     public void CrearPresupuesto(Presupuestos presupuesto){
-        string connectionString= @"DataSource=Tienda.db; Cache=Shared";
         string queryString=@"INSERT INTO Presupuestos (ClienteId, FechaCreacion) VALUES (@IdCliente, @fechaCreacion)";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
@@ -15,7 +18,6 @@ class PresupuestosRepository{
     }
     public List<Presupuestos> ListarPresupuestosGuardados(){
         List<Presupuestos> presupuestos=new List<Presupuestos>();
-        string connectionString=@"DataSource=Tienda.db; Cache=Shared";
         string queryString=@"SELECT idPresupuesto, FechaCreacion, ClienteId, Nombre, Email, Telefono FROM Presupuestos INNER JOIN Clientes USING(ClienteId);";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
@@ -39,7 +41,6 @@ class PresupuestosRepository{
     {
         ClientesRepository repo= new ClientesRepository();
         Presupuestos presupuesto = new Presupuestos();
-        string connectionString = @"Data Source = Tienda.db;Cache=Shared";
         string query = @"SELECT P.idPresupuesto, ClienteId, P.FechaCreacion, PR.idProducto, PR.Descripcion AS Producto, PR.Precio, PD.Cantidad FROM Presupuestos P LEFT JOIN PresupuestosDetalle PD ON P.idPresupuesto = PD.idPresupuesto LEFT JOIN Productos PR ON PD.idProducto = PR.idProducto WHERE P.idPresupuesto = @id;";
         using (SqliteConnection connection = new SqliteConnection(connectionString)){
             connection.Open();
@@ -66,7 +67,6 @@ class PresupuestosRepository{
     }
     public void AgregarProducto(int idPresupuesto, int idProducto, int cantidad){
         ProductosRepository repositorioProductos = new ProductosRepository();
-        string connectionString=@"Data Source = Tienda.db;Cache=Shared";
         string checkQuery=@"SELECT COUNT(1) FROM PresupuestosDetalle WHERE idPresupuesto=@idPresupuesto AND idProducto=@idProducto";
         string updateQuery=@"UPDATE PresupuestosDetalle SET Cantidad=Cantidad+@cantidad WHERE idPresupuesto=@idPresupuesto AND idProducto=@idProducto";
         string insertQuery=@"INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) VALUES (@idPresupuesto, @idProducto, @cantidad)";
@@ -93,7 +93,6 @@ class PresupuestosRepository{
         }
     }
     public void EliminarPresupuestoPorId(int id){
-        string connectionString=@"DataSource=Tienda.db; Cache=Shared";
         string queryString=@"DELETE FROM Presupuestos WHERE idPresupuesto=@idP;";
         string queryString2=@"DELETE FROM PresupuestosDetalle WHERE idPresupuesto=@idD;";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
@@ -109,7 +108,6 @@ class PresupuestosRepository{
     }
     public List<PresupuestosDetalle> MostrarDetallePorId(int id){
         ProductosRepository repoProductos=new ProductosRepository();
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"SELECT idProducto, cantidad FROM PresupuestosDetalle WHERE idPresupuesto=@id;";
         List<PresupuestosDetalle> detalles=new List<PresupuestosDetalle>();
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
@@ -129,7 +127,6 @@ class PresupuestosRepository{
         return detalles;
     }
     public void EliminarProducto(int idPresupuesto, int idProducto, int cantVieja, int cantNueva){
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string deleteQuery=@"DELETE FROM PresupuestosDetalle WHERE idPresupuesto=@idPresu AND idProducto=@idProd;";
         string updateQuery=@"UPDATE PresupuestosDetalle SET Cantidad=@cantidadNueva WHERE idPresupuesto=@idPresu AND idProducto=@idProd;";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
@@ -150,7 +147,6 @@ class PresupuestosRepository{
         }
     }
     public void ModificarPresupuesto(Presupuestos presupuesto){
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"UPDATE Presupuestos SET ClienteId=@IdCliente, FechaCreacion=@fech WHERE idPresupuesto=@idPresu;";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();

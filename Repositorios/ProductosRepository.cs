@@ -1,8 +1,11 @@
 using Microsoft.Data.Sqlite;
 
 class ProductosRepository{
+    string connectionString;
+    public ProductosRepository(){
+        connectionString=@"Data Source=Tienda.db; Cache=Shared";
+    }
     public void CrearNuevoProducto(Productos producto){
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"INSERT INTO Productos (Descripcion, Precio) VALUES (@Descripcion, @Precio)";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
@@ -14,7 +17,6 @@ class ProductosRepository{
         }
     }
     public void ModificarProducto(Productos producto){
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"UPDATE Productos SET Descripcion=@Descripcion, Precio=@Precio WHERE idProducto=@Id";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
@@ -28,7 +30,6 @@ class ProductosRepository{
     }
     public List<Productos> ListarProductosRegistrados(){
         List<Productos> productos=new List<Productos>();
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"SELECT * FROM Productos";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
@@ -48,7 +49,6 @@ class ProductosRepository{
     }
     public Productos ObtenerDetallesDeProductoPorId(int id){
         Productos producto=new Productos();
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"SELECT * FROM Productos WHERE idProducto=@id";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
@@ -67,7 +67,6 @@ class ProductosRepository{
         return producto;
     }
     public void EliminarProductoPorId(int id){
-        string connectionString=@"Data Source=Tienda.db; Cache=Shared";
         string queryString=@"DELETE FROM Productos WHERE idProducto=@id";
         string queryString2=@"DELETE FROM PresupuestosDetalle WHERE idProducto=@id";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
