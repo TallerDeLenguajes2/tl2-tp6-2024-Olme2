@@ -3,10 +3,7 @@ builder.Services.AddSingleton<IClientesRepository,ClientesRepository>();
 builder.Services.AddSingleton<IPresupuestosRepository, PresupuestosRepository>();
 builder.Services.AddSingleton<IProductosRepository, ProductosRepository>();
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
-
-app.UseSession();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
