@@ -28,4 +28,17 @@ public class UsuariosRepository : IUsuariosRepository{
         }
         return usuario;
     }
+    public void CrearUsuario(Usuarios usuario){
+        string queryString = @"INSERT INTO Usuarios (Nombre, Usuario, Contraseña, IdRol) VALUES (@nombre, @usuario, @contraseña, @idRol);";
+        using(SqliteConnection connection = new SqliteConnection(connectionString)){
+            connection.Open();
+            SqliteCommand command = new SqliteCommand(queryString, connection);
+            command.Parameters.AddWithValue("@nombre", usuario.Nombre);
+            command.Parameters.AddWithValue("@usuario", usuario.Usuario);
+            command.Parameters.AddWithValue("@contraseña", usuario.Contraseña);
+            command.Parameters.AddWithValue("@idRol", (int)usuario.Rol);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+    }
 }
