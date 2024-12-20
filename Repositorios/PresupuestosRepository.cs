@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.Data.Sqlite;
-class PresupuestosRepository{
+class PresupuestosRepository : IPresupuestosRepository{
     string connectionString;
     public PresupuestosRepository(){
         connectionString = @"DataSource=Tienda.db; Cache=Shared";
