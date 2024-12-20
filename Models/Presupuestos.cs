@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 public class Presupuestos{
     private int idPresupuesto;
     private Clientes cliente;
