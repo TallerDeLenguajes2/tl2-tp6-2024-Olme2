@@ -1,5 +1,11 @@
 @model ModificarPresupuestoViewModel
 
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <h3>Modificacion del presupuesto n° @Model.IdPresupuesto</h3>
 <form asp-controller="Presupuestos" asp-action="ModificarElPresupuesto" method="post" class="form container mt-4">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

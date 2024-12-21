@@ -1,9 +1,9 @@
 using Microsoft.Data.Sqlite;
 
 class ProductosRepository : IProductosRepository{
-    string connectionString;
-    public ProductosRepository(){
-        connectionString=@"Data Source=Tienda.db; Cache=Shared";
+    private readonly string connectionString;
+    public ProductosRepository(string CadenaDeConexion){
+        connectionString = CadenaDeConexion;
     }
     public void CrearNuevoProducto(Productos producto){
         string queryString=@"INSERT INTO Productos (Descripcion, Precio) VALUES (@Descripcion, @Precio)";
@@ -48,7 +48,7 @@ class ProductosRepository : IProductosRepository{
         return productos;
     }
     public Productos ObtenerDetallesDeProductoPorId(int id){
-        Productos producto=new Productos();
+        Productos? producto = null;
         string queryString=@"SELECT * FROM Productos WHERE idProducto=@id";
         using(SqliteConnection connection=new SqliteConnection(connectionString)){
             connection.Open();
@@ -63,6 +63,10 @@ class ProductosRepository : IProductosRepository{
                 }
             }
             connection.Close();
+        }
+        if (producto == null)
+        {
+            throw new Exception("Producto inexistente");
         }
         return producto;
     }

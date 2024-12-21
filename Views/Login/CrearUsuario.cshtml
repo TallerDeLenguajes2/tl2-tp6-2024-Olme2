@@ -1,5 +1,11 @@
 @model CrearUsuarioViewModel
 
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <form asp-action="CrearElUsuario" method="post" class="needs-validation" novalidate>
     <div class="form-group">
         <label asp-for="Nombre" class="form-label">Nombre</label>

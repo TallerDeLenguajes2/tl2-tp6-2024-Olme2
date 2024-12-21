@@ -1,9 +1,9 @@
 using Microsoft.Data.Sqlite;
 
 class ClientesRepository : IClientesRepository{
-    string connectionString;
-    public ClientesRepository(){
-        connectionString = @"DataSource=Tienda.db; Cache=Shared";
+    private readonly string connectionString;
+    public ClientesRepository(string CadenaDeConexion){
+        connectionString = CadenaDeConexion;
     }
     public List<Clientes> ListarClientesGuardados(){
         List<Clientes> clientes = new List<Clientes>();
@@ -34,7 +34,7 @@ class ClientesRepository : IClientesRepository{
         }
     }
     public Clientes ObtenerClientePorId(int id){
-        Clientes cliente= new Clientes();
+        Clientes? cliente= null;
         string queryString= @"SELECT * FROM Clientes WHERE ClienteId=@id;";
         using(SqliteConnection connection= new SqliteConnection(connectionString)){
             connection.Open();
@@ -42,6 +42,7 @@ class ClientesRepository : IClientesRepository{
             command.Parameters.AddWithValue("@id", id);
             using(SqliteDataReader reader= command.ExecuteReader()){
                 if(reader.Read()){
+                    cliente = new Clientes();
                     cliente.ClienteId= Convert.ToInt32(reader["ClienteId"]);
                     cliente.Nombre= reader["Nombre"].ToString();
                     cliente.Email= reader["Email"].ToString();
@@ -49,6 +50,9 @@ class ClientesRepository : IClientesRepository{
                 }
             }
             connection.Close();
+        }
+        if(cliente == null){
+            throw new Exception("Cliente Inexistente");
         }
         return cliente;
     }

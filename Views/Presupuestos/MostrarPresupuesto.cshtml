@@ -1,4 +1,11 @@
 @model Presupuestos
+
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <h3>Detalles del Presupuesto @Model.IdPresupuesto</h3>  
 <div class="container mt-4">
     <div class="mb-4">

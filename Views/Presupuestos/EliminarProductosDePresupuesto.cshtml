@@ -1,4 +1,11 @@
 @model int
+
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <h3>Eliminacion de Productos del Presupuesto @Model</h3>
 @if(ViewData["PresupuestosDetalle"]!=null && ((List<PresupuestosDetalle>)ViewData["PresupuestosDetalle"]).Count!=0){
 <form asp-controller="Presupuestos" asp-action="EliminarProductos" method="post" class="container mt-4">

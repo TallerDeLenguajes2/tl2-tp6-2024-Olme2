@@ -1,5 +1,11 @@
 @model AltaPresupuestoViewModel
 
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <h3>Creacion de nuevo presupuesto</h3>
 <form asp-controller="Presupuestos" asp-action="CrearPresupuesto" method="post" class="form container mt-4">
     <div class="form-group">

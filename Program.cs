@@ -3,6 +3,9 @@ builder.Services.AddSingleton<IClientesRepository,ClientesRepository>();
 builder.Services.AddSingleton<IPresupuestosRepository, PresupuestosRepository>();
 builder.Services.AddSingleton<IProductosRepository, ProductosRepository>();
 builder.Services.AddScoped<IUsuariosRepository, UsuariosRepository>();
+
+var CadenaDeConexion = builder.Configuration.GetConnectionString("SqliteConexion")!.ToString();
+builder.Services.AddSingleton(CadenaDeConexion);
 // Add services to the container.
 builder.Services.AddSession(options =>
 {

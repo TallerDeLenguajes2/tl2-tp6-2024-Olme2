@@ -1,5 +1,11 @@
 @model AltaProductoViewModel
 
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <h3>Creacion de nuevo producto</h3>
 <form asp-controller="Productos" asp-action="CrearProducto" method="post" class="form">
     <div class="form-group">

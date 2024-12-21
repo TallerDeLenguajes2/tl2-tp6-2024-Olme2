@@ -12,11 +12,13 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        if (string.IsNullOrEmpty(HttpContext.Session.GetString("usuario"))) return RedirectToAction ("Index", "Login");
         return View();
     }
 
     public IActionResult Privacy()
     {
+        if (string.IsNullOrEmpty(HttpContext.Session.GetString("User"))) return RedirectToAction ("Index", "Login");
         return View();
     }
 

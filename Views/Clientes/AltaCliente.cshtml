@@ -1,5 +1,11 @@
 @model AltaClienteViewModel
 
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <h3>Ingreso de nuevo Cliente</h3>
 <form asp-controller="Clientes" asp-action="CrearCliente" method="post" calss="form">
     <div class="form-group">

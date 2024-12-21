@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.Data.Sqlite;
 class PresupuestosRepository : IPresupuestosRepository{
-    string connectionString;
-    public PresupuestosRepository(){
-        connectionString = @"DataSource=Tienda.db; Cache=Shared";
+    private readonly string connectionString;
+    public PresupuestosRepository(string CadenaDeConexion){
+        connectionString = CadenaDeConexion;
     }
     public void CrearPresupuesto(Presupuestos presupuesto){
         string queryString=@"INSERT INTO Presupuestos (ClienteId, FechaCreacion) VALUES (@IdCliente, @fechaCreacion)";
@@ -39,8 +39,8 @@ class PresupuestosRepository : IPresupuestosRepository{
     }
      public Presupuestos ObtenerPresupuestoPorId(int id)
     {
-        ClientesRepository repo= new ClientesRepository();
-        Presupuestos presupuesto = new Presupuestos();
+        ClientesRepository repo= new ClientesRepository(connectionString);
+        Presupuestos? presupuesto = null;
         string query = @"SELECT P.idPresupuesto, ClienteId, P.FechaCreacion, PR.idProducto, PR.Descripcion AS Producto, PR.Precio, PD.Cantidad FROM Presupuestos P LEFT JOIN PresupuestosDetalle PD ON P.idPresupuesto = PD.idPresupuesto LEFT JOIN Productos PR ON PD.idProducto = PR.idProducto WHERE P.idPresupuesto = @id;";
         using (SqliteConnection connection = new SqliteConnection(connectionString)){
             connection.Open();
@@ -56,6 +56,7 @@ class PresupuestosRepository : IPresupuestosRepository{
                     if(!reader.IsDBNull(reader.GetOrdinal("idProducto"))){
                         Productos producto = new Productos(Convert.ToInt32(reader["idProducto"]), reader["Producto"].ToString(), Convert.ToInt32(reader["Precio"]));
                         PresupuestosDetalle detalle = new PresupuestosDetalle(producto,Convert.ToInt32(reader["Cantidad"]));
+                        if(presupuesto!=null && presupuesto.Detalle!=null)
                         presupuesto.Detalle.Add(detalle);
                     }
                     aux++;
@@ -63,10 +64,14 @@ class PresupuestosRepository : IPresupuestosRepository{
             }
             connection.Close();
         }
+        if (presupuesto == null)
+        {
+            throw new Exception("Presupuesto inexistente");
+        }
         return presupuesto;
     }
     public void AgregarProducto(int idPresupuesto, int idProducto, int cantidad){
-        ProductosRepository repositorioProductos = new ProductosRepository();
+        ProductosRepository repositorioProductos = new ProductosRepository(connectionString);
         string checkQuery=@"SELECT COUNT(1) FROM PresupuestosDetalle WHERE idPresupuesto=@idPresupuesto AND idProducto=@idProducto";
         string updateQuery=@"UPDATE PresupuestosDetalle SET Cantidad=Cantidad+@cantidad WHERE idPresupuesto=@idPresupuesto AND idProducto=@idProducto";
         string insertQuery=@"INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) VALUES (@idPresupuesto, @idProducto, @cantidad)";
@@ -107,7 +112,7 @@ class PresupuestosRepository : IPresupuestosRepository{
         }
     }
     public List<PresupuestosDetalle> MostrarDetallePorId(int id){
-        ProductosRepository repoProductos=new ProductosRepository();
+        ProductosRepository repoProductos=new ProductosRepository(connectionString);
         string queryString=@"SELECT idProducto, cantidad FROM PresupuestosDetalle WHERE idPresupuesto=@id;";
         List<PresupuestosDetalle> detalles=new List<PresupuestosDetalle>();
         using(SqliteConnection connection=new SqliteConnection(connectionString)){

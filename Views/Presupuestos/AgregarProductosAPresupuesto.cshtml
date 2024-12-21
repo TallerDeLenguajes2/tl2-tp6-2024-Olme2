@@ -1,4 +1,11 @@
 @model AgregarProductosAPresupuestoViewModel
+
+@if(ViewBag.ErrorMessage != null){
+    <div class="error-message">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
 <h3>Agregacion de Productos al Presupuesto @Model.IdPresupuesto</h3>
 <form asp-controller="Presupuestos" asp-action="AgregarLosProductos" method="post" class="container mt-4">
         <input type="hidden" name="idPresupuesto" value="@Model.IdPresupuesto">
